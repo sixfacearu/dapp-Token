@@ -6,47 +6,52 @@
     <script src="web3.min.js"></script>
     
   </head>
+
    <center><h2 align="center" style="color:blue;border:1px dotted black;width:500px;background:white;">BANK APPLICATION</h2></center>
-  <body align="center" background="k.jpg">
-	<center><div class="cls" style="width:700px; height:100px;background:orange;border:1px dotted black;text-align:center;"><h3>TotalSupply</h3>
+  <body align="center" bgcolor="lightblue">
+	<center><div class="cls" style="width:700px; height:100px;background:#00FFFF;border:1px dotted black;text-align:center;"><h3>TotalSupply</h3>
                 <input id="a" type="text" placeholder="value" />
 		<input type="button" onclick="totalSupply()" value="totalSupply"></div></br></center>
-       <center> <div class="cls" style="width:700px;height:100px;background:orange;border:1px dotted black;text-align:center"><h3>CheckBalance</h3>
+       <center> <div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>CheckBalance</h3>
 		<input id="a2" type="text" placeholder="accountno" />
 		<input type="button" onclick="balanceof()" value="balanceOf" >
 	</div></br></center>
-        <center><div class="cls" style="width:700px;height:100px;background:orange;border:1px dotted black;text-align:center"><h3>Transfer</h3>
+        <center><div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>Transfer</h3>
 		<input id="a3" type="text" placeholder="toaddress" />
                 <input id="a4" type="text" placeholder="tokens" />
 		<input type="button" onclick="transfer()" value="transfer" >
 	</div></br></center>
-        <center> <div class="cls" style="width:700px;height:100px;background:orange;border:1px dotted black;text-align:center"><h3>Approve</h3>
+        <center> <div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>Approve</h3>
 		<input id="a5" type="text" placeholder="spenderaddress" />
                 <input id="a6" type="text" placeholder="values" />
 		<input type="button" onclick="approve()" value="approve" >
 	</div></br></center>
-       <center><div class="cls" style="width:700px;height:100px;background:orange;border:1px dotted black;text-align:center"><h3>Allowance</h3>
+       <center><div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>Allowance</h3>
 		 <input id="b9" type="text" placeholder="owner"/>
                 <input id="b10" type="text" placeholder="spender"/>
                  <input type="button" onclick="allo()" value=" allowance"><h1 id="b11"></h1><br>
 	</div></br></center>
-       <center><div class="cls" style="width:700px;height:100px;background:orange;border:1px dotted black;"><h3>Transferfrom</h3>
+       <center><div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;"><h3>Transferfrom</h3>
 		<input id="a11" type="text" placeholder="spenderaddress" />
                 <input id="a01" type="text" placeholder="toaddress" />
                  <input id="a02" type="text" placeholder="values" />
 		<input type="button" onclick="transferFrom()" value="transferFrom" >
 	</center></div></br>
-       <center><div class="cls" style="width:700px;height:100px;background:orange;border:1px dotted black;text-align:center"><h3>IncreaseApproval</h3>
+       <center><div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>IncreaseApproval</h3>
 		<input id="a03" type="text" placeholder="spenderaddress" />
                 <input id="a04" type="text" placeholder="addedvalue" />
 		<input type="button" onclick="increaseapprove()" value="increaseApproval" >
 	</div></br></center>
-      <center><div class="cls" style="width:700px;height:100px;background:orange;border:1px dotted black;text-align:center"><h3>DecreaseApproval</h3>
+      <center><div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>DecreaseApproval</h3>
 		<input id="a05" type="text" placeholder="spenderaddress" />
                 <input id="a06" type="text" placeholder="subractvalue" />
 		<input type="button" onclick="decreaseapprove()" value="decreaseApproval" >
 	</div></br></center>
-     
+      <center><div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>Mint</h3>
+                <input id="a07" type="text" placeholder="amount"/>
+                <input type="button" onclick="mint()" value="mint" >
+	</div></br></center>
+                
       
 </body>
 <script>
@@ -168,6 +173,20 @@
 		"constant": false,
 		"inputs": [
 			{
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "mint",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
 				"name": "tokens",
 				"type": "uint256"
 			}
@@ -229,7 +248,7 @@
 		"type": "function"
 	}
 ]);
-        var mycont = bank.at('0xac4b40ff1e65144d60e1ad9c8c0af00c29e3a7fa');
+        var mycont = bank.at('0xecbc69aba8aab24af04ecffb97cb6cf873d504ab');
     
      if(!web3.isConnected()) {
   
@@ -289,7 +308,6 @@ function balanceof()
 	});
 //alert("done!....");
 }
-
 function transfer()
 {
 	 var c=document.getElementById("a3").value;
@@ -383,7 +401,439 @@ function decreaseapprove()
 		});
 //alert("done!....");
 }
+function mint()
+{
+             var p=document.getElementById("a07").value;
+                return mycont.mint(p,function(error,result)
+                   {
+                    if(!error)
+                            {
+                         alert(result);
+                            }else
+                {
+                      console.error(error);
+                            }
+});
+}
+  
+</script>
+</html><!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <script src="web3.min.js"></script>
+    
+  </head>
 
+   <center><h2 align="center" style="color:blue;border:1px dotted black;width:500px;background:white;">BANK APPLICATION</h2></center>
+  <body align="center" bgcolor="lightblue">
+	<center><div class="cls" style="width:700px; height:100px;background:#00FFFF;border:1px dotted black;text-align:center;"><h3>TotalSupply</h3>
+                <input id="a" type="text" placeholder="value" />
+		<input type="button" onclick="totalSupply()" value="totalSupply"></div></br></center>
+       <center> <div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>CheckBalance</h3>
+		<input id="a2" type="text" placeholder="accountno" />
+		<input type="button" onclick="balanceof()" value="balanceOf" >
+	</div></br></center>
+        <center><div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>Transfer</h3>
+		<input id="a3" type="text" placeholder="toaddress" />
+                <input id="a4" type="text" placeholder="tokens" />
+		<input type="button" onclick="transfer()" value="transfer" >
+	</div></br></center>
+        <center> <div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>Approve</h3>
+		<input id="a5" type="text" placeholder="spenderaddress" />
+                <input id="a6" type="text" placeholder="values" />
+		<input type="button" onclick="approve()" value="approve" >
+	</div></br></center>
+       <center><div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>Allowance</h3>
+		 <input id="b9" type="text" placeholder="owner"/>
+                <input id="b10" type="text" placeholder="spender"/>
+                 <input type="button" onclick="allo()" value=" allowance"><h1 id="b11"></h1><br>
+	</div></br></center>
+       <center><div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;"><h3>Transferfrom</h3>
+		<input id="a11" type="text" placeholder="spenderaddress" />
+                <input id="a01" type="text" placeholder="toaddress" />
+                 <input id="a02" type="text" placeholder="values" />
+		<input type="button" onclick="transferFrom()" value="transferFrom" >
+	</center></div></br>
+       <center><div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>IncreaseApproval</h3>
+		<input id="a03" type="text" placeholder="spenderaddress" />
+                <input id="a04" type="text" placeholder="addedvalue" />
+		<input type="button" onclick="increaseapprove()" value="increaseApproval" >
+	</div></br></center>
+      <center><div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>DecreaseApproval</h3>
+		<input id="a05" type="text" placeholder="spenderaddress" />
+                <input id="a06" type="text" placeholder="subractvalue" />
+		<input type="button" onclick="decreaseapprove()" value="decreaseApproval" >
+	</div></br></center>
+      <center><div class="cls" style="width:700px;height:100px;background:#00FFFF;border:1px dotted black;text-align:center"><h3>Mint</h3>
+                <input id="a07" type="text" placeholder="amount"/>
+                <input type="button" onclick="mint()" value="mint" >
+	</div></br></center>
+                
+      
+</body>
+<script>
+   
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+        var bank = web3.eth.contract([
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "who",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"name": "spender",
+				"type": "address"
+			}
+		],
+		"name": "allowance",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "approve",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"name": "subtractedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "decreaseApproval",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"name": "addedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "increaseApproval",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "mint",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "tokens",
+				"type": "uint256"
+			}
+		],
+		"name": "totalSupply",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "transfer",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "transferFrom",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]);
+        var mycont = bank.at('0xecbc69aba8aab24af04ecffb97cb6cf873d504ab');
+    
+     if(!web3.isConnected()) {
+  
+        console.log("Ok");
+        
+      } else {
+        console.log("no");
+      }
+      web3.version.getNetwork((err, netId) => {
+            switch (netId) {
+              case "1":
+                console.log('This is mainnet')
+                break
+              case "2":
+                console.log('This is the deprecated Morden test network.')
+                break
+              case "3":
+                console.log('This is the ropsten test network.')
+                break
+              case "4":
+                console.log('This is the Rinkeby test network.')
+                break
+              case "42":
+                console.log('This is the Kovan test network.')
+                break
+              default:
+                console.log('This is an unknown network.')
+            }
+        })
+function totalSupply()
+{
+ var a=document.getElementById("a").value;
+ 
+	return mycont.totalSupply(a,function(error,result){
+		if(!error){
+			alert(result);
+		}
+		else{
+			console.error(error);
+		}
+	});
+	
+	//alert("done!....");
+}
+function balanceof()
+{
+	 var b=document.getElementById("a2").value;
+	return mycont.balanceOf(b,function(error,result)
+	{
+		if(!error)
+		{
+			alert(result);
+		}else
+		{
+			console.error(error);
+		}
+	});
+//alert("done!....");
+}
+function transfer()
+{
+	 var c=document.getElementById("a3").value;
+	  var d=document.getElementById("a4").value;
+		return mycont.transfer(c,d,function(error,result)
+		{
+			if(!error)
+			{
+				alert(result);
+			}else
+			{
+				console.error(error);
+			}
+		});
+//alert("done!....");
+}
+function approve()
+{
+	 var e=document.getElementById("a5").value;
+	  var f=document.getElementById("a6").value;
+		return mycont.approve(e,f,function(error,result)
+		{
+			if(!error)
+			{
+				alert(result);
+			}else
+			{
+				console.error(error);
+			}
+		});
+//alert("done!....");
+}
+function allo(){
+        var x=document.getElementById("b9").value;
+	var g=document.getElementById("b10").value;
+        return mycont. allowance(x,g,function(error,result){
+                if (!error) {
+                    alert(result);
+                }
+                else{
+                  console.error(error);
+                }
+              });
+            }
+function transferFrom()
+{
+	 var i=document.getElementById("a11").value;
+	  var j=document.getElementById("a01").value;
+            var k=document.getElementById("a02").value;
+		return mycont.transferFrom(i,j,k,function(error,result)
+		{
+			if(!error)
+			{
+				alert(result);
+			}else
+			{
+				console.error(error);
+			}
+		});
+//alert("done!....");
+}
+function increaseapprove()
+{
+	 var l=document.getElementById("a03").value;
+	  var m=document.getElementById("a04").value;
+		return mycont.increaseApproval(l,m,function(error,result)
+		{
+			if(!error)
+			{
+				alert(result);
+			}else
+			{
+				console.error(error);
+			}
+		});
+//alert("done!....");
+}
+function decreaseapprove()
+{
+	 var n=document.getElementById("a05").value;
+	  var o=document.getElementById("a06").value;
+		return mycont.decreaseApproval(n,o,function(error,result)
+		{
+			if(!error)
+			{
+				alert(result);
+			}else
+			{
+				console.error(error);
+			}
+		});
+//alert("done!....");
+}
+function mint()
+{
+             var p=document.getElementById("a07").value;
+                return mycont.mint(p,function(error,result)
+                   {
+                    if(!error)
+                            {
+                         alert(result);
+                            }else
+                {
+                      console.error(error);
+                            }
+});
+}
   
 </script>
 </html>
