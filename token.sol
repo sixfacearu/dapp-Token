@@ -41,5 +41,10 @@ contract token{
          if(subtractedValue<=apprve[msg.sender][spender] && subtractedValue>0)
              apprve[msg.sender][spender]-=subtractedValue;
          }
+         function mint(uint value) public returns (bool){
+        
+             bank[msg.sender] = bank[msg.sender] + value;
+         }
+         
     
 }
